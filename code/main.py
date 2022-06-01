@@ -8,6 +8,7 @@ pygame.init()
 screen = pygame.display.set_mode((screen_width,screen_height))
 clock = pygame.time.Clock()
 level = Level(level_0,screen)
+pygame.display.set_caption('XQC')
 
 while True:
 	for event in pygame.event.get():
