@@ -70,60 +70,60 @@ class Player(pygame.sprite.Sprite):
 			self.rect = self.image.get_rect(topleft = self.rect.topleft)
 		elif self.on_ceiling:
 			self.rect = self.image.get_rect(midtop = self.rect.midtop)
-   
-def run_dust_animation(self):
-    if self.status == 'run' and self.on_ground:
-        self.dust_frame_index += self.dust_animation_speed
-        if self.dust_frame_index >= len(self.dust_run_particles):
-            self.dust_frame_index = 0
-            
-        dust_particle = self.dust_run_particles[int(self.dust_frame_index)]
 
-        if self.facing_right:
-            pos = self.rect.buttomleft - pygame.math.Vector2(6,10)
-            self.display_surface.blit(dust_particle,pos)
-        else:
-            pos= self.rect.bottomright - pygame.math.Vector(6,10)
-            flipped_dust_particle = pygame.transform.flip(dust_particle,True,False)
-            self.display.surface.blit(flipped_dust_particle)
-            
-def get_input(self):
-    keys = pygame.key.get_pressed()
+	def run_dust_animation(self):
+		if self.status == 'run' and self.on_ground:
+			self.dust_frame_index += self.dust_animation_speed
+			if self.dust_frame_index >= len(self.dust_run_particles):
+				self.dust_frame_index = 0
 
-    if keys[pygame.K_RIGHT]:
-        self.direction.x = 1
-        self.facing_right = True
-    elif keys[pygame.K_LEFT]:
-        self.direction.x = -1
-        self.facing_right = False
-    else:
-        self.direction.x = 0
-        
-    if keys[pygame.K_SPACE] and self.on_ground:
-        self.jump()
-        self.create_jump_particles(self.rect.midbottom)
+			dust_particle = self.dust_run_particles[int(self.dust_frame_index)]
 
-def get_status(self):
-    if self.direction.y < 0:
-        self.status = 'jump'
-    elif self.direction.y > 1:
-        self.status = 'fall'
-    else:
-        if self.direction.x != 0:
-            self.status = 'run'
-        else:
-            self.status = 'idle'
-            
-def apply_gravity(self):
-    self.direction.y += self.gravity
-    self.rect.y += self.direction.y
-    
-def jump (self):
-    self.direction.y = self.jump_speed
-    
-def update(self):
-    self.get_input()
-    self.get_status()
-    self.animate()
-    self.run_dust_animation()
-    
+			if self.facing_right:
+				pos = self.rect.bottomleft - pygame.math.Vector2(6,10)
+				self.display_surface.blit(dust_particle,pos)
+			else:
+				pos = self.rect.bottomright - pygame.math.Vector2(6,10)
+				flipped_dust_particle = pygame.transform.flip(dust_particle,True,False)
+				self.display_surface.blit(flipped_dust_particle,pos)
+
+	def get_input(self):
+		keys = pygame.key.get_pressed()
+
+		if keys[pygame.K_RIGHT]:
+			self.direction.x = 1
+			self.facing_right = True
+		elif keys[pygame.K_LEFT]:
+			self.direction.x = -1
+			self.facing_right = False
+		else:
+			self.direction.x = 0
+
+		if keys[pygame.K_SPACE] and self.on_ground:
+			self.jump()
+			self.create_jump_particles(self.rect.midbottom)
+
+	def get_status(self):
+		if self.direction.y < 0:
+			self.status = 'jump'
+		elif self.direction.y > 1:
+			self.status = 'fall'
+		else:
+			if self.direction.x != 0:
+				self.status = 'run'
+			else:
+				self.status = 'idle'
+
+	def apply_gravity(self):
+		self.direction.y += self.gravity
+		self.rect.y += self.direction.y
+
+	def jump(self):
+		self.direction.y = self.jump_speed
+
+	def update(self):
+		self.get_input()
+		self.get_status()
+		self.animate()
+		self.run_dust_animation()
+		
