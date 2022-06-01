@@ -1,6 +1,7 @@
 import pygame, sys
 from settings import * 
 from level import Level
+from game_data import level_0
 
 # Pygame setup
 pygame.init()
@@ -19,4 +20,3 @@ while True:
 
 	pygame.display.update()
 	clock.tick(60)
- 
