@@ -1,4 +1,5 @@
-import pygame, sys
+import pygame
+import sys
 from settings import * 
 from level import Level
 from overworld import Overworld
@@ -67,7 +68,6 @@ class Game:
 
 # Pygame setup
 pygame.init()
-pygame.display.set_caption('XQC')
 screen = pygame.display.set_mode((screen_width,screen_height))
 clock = pygame.time.Clock()
 game = Game()
