@@ -74,6 +74,9 @@ class Game:
 
 # Pygame setup
 pygame.init()
+Icon = pygame.image.load('../graphics/character/idle/1.png')
+pygame.display.set_icon(Icon)
+pygame.display.set_caption('Very Polished Platformer')
 screen = pygame.display.set_mode((screen_width, screen_height))
 clock = pygame.time.Clock()
 game = Game()
